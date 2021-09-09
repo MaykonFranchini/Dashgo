@@ -19,13 +19,13 @@ export function Header() {
         >
             <Logo />
             <SearchBox />
-        <Flex
-            align="center"
-            marginLeft="auto"
-        >
-            <NotificationsNav />
-            <Profile />
-        </Flex>
+            <Flex
+                align="center"
+                marginLeft="auto"
+            >
+                <NotificationsNav />
+                <Profile />
+            </Flex>
         </Flex>
     )
 }
