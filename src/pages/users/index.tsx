@@ -3,6 +3,7 @@ import { RiAddLine, RiPencilLine } from 'react-icons/ri';
 import { Header } from '../../components/Header/Index';
 import { Sidebar } from '../../components/Sidebar/Index'
 import { Pagination } from '../../components/Pagination/Index';
+import Link from 'next/link'
 
 export default function UserList() {
 
@@ -20,16 +21,18 @@ export default function UserList() {
         <Box flex="1" borderRadius={8} backgroundColor="gray.800" padding={["4","8"]}>
           <Flex marginBottom="8" justifyContent="space-between" alignItems="center">
             <Heading size="lg" fontWeight="normal">Usuários</Heading>
-            <Button 
-              as="a"
-              size="sm"
-              fontSize="sm"
-              colorScheme="pink"
-              iconSpacing={isWideVersion ? '1.5': '-0.5'}
-              leftIcon={<Icon as={RiAddLine} fontSize="20" />}
-            >
-             {isWideVersion && 'Criar novo'}
-            </Button>
+            <Link href="/users/create" passHref>
+              <Button 
+                as="a"
+                size="sm"
+                fontSize="sm"
+                colorScheme="pink"
+                iconSpacing={isWideVersion ? '1.5': '-0.5'}
+                leftIcon={<Icon as={RiAddLine} fontSize="20" />}
+              >
+              {isWideVersion && 'Criar novo'}
+              </Button>
+            </Link>
           </Flex>
 
           <Table colorScheme="whiteAlpha" >
