@@ -23,7 +23,7 @@ export function Header() {
             height="20"
             marginX="auto"
             marginTop="4"
-            paddingX="6"
+            paddingX={["4","6"]}
             alignItems="center"
         >
             {!isWideVersion && (
