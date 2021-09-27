@@ -4,28 +4,12 @@ import { Header } from '../../components/Header/Index';
 import { Sidebar } from '../../components/Sidebar/Index'
 import { Pagination } from '../../components/Pagination/Index';
 import Link from 'next/link'
-import { useQuery } from 'react-query';
+import { useUsers } from '../../services/hooks/useUsers';
 
 
 export default function UserList() {
 
-  const {data, isLoading, error } = useQuery('users', async () => {
-    const response = await fetch('http://localhost:3000/api/users')
-    const data = await response.json()
-
-    const users = data.users.map(user => {
-      return {
-        id: user.id,
-        name: user.name,
-        email: user.email,
-        createdAt: new Date(user.createdAt).toLocaleDateString('pt-BR')
-      };
-    })
-
-    return users;
-  }, {
-    staleTime: 1000 * 5 // -- 5 seg -- determina o tempo em que os dados permanecem fresh, ou seja, sem necessidade de refecth.
-  })
+  const {data, isLoading, isFetching, error } = useUsers()
 
 
   const isWideVersion = useBreakpointValue({
@@ -43,7 +27,10 @@ export default function UserList() {
 
         <Box flex="1" borderRadius={8} backgroundColor="gray.800" padding={["4","8"]}>
           <Flex marginBottom="8" justifyContent="space-between" alignItems="center">
-            <Heading size="lg" fontWeight="normal">Usuários</Heading>
+            <Heading size="lg" fontWeight="normal">
+              Usuários
+              {!isLoading && isFetching && <Spinner size="sm" marginLeft="4" color="gray.500" />}
+              </Heading>
             <Link href="/users/create" passHref>
               <Button 
                 as="a"
