@@ -4,10 +4,12 @@ import { Header } from '../../components/Header/Index';
 import { Sidebar } from '../../components/Sidebar/Index'
 import { Pagination } from '../../components/Pagination/Index';
 import NextLink from 'next/link'
-import { useUsers } from '../../services/hooks/useUsers';
+import { getUsers, useUsers } from '../../services/hooks/useUsers';
 import { useState } from 'react';
 import { queryClient } from '../../services/queryClient';
 import { api } from '../../services/api';
+import { GetServerSideProps } from 'next';
+
 
 
 export default function UserList() {
@@ -122,3 +124,14 @@ export default function UserList() {
     </Box>
   )
 }
+
+
+// export const getServerSideProps: GetServerSideProps = async () => {
+//   const { users, totalCount } = await getUsers(1)
+
+//   return {
+//     props: {
+//       users,
+//     }
+//   }
+// }
